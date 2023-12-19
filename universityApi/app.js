@@ -3,7 +3,7 @@ let uniUrl = "http://universities.hipolabs.com/search?country=";
 let btn = document.querySelector("#btn");
 
 let inputCountry = document.querySelector("#countryName");
-let inputCollege = document.querySelector("#universityName");
+let inputUni = document.querySelector("#universityName");
 let inputState = document.querySelector("#stateName");
 
 btn.addEventListener("click", async () => {
@@ -14,10 +14,10 @@ btn.addEventListener("click", async () => {
     // console.log(uniNames);
     for (uni of uniNames) {
         let li = document.createElement("li");
-        console.log(uni);
+        // console.log(uni);
 
-        if (uni.name == inputCollege.value) {
-            console.log(uni);
+        if (uni.name == inputUni.value) {
+            // console.log(uni);
             li.innerText = uni["state-province"];
             list.appendChild(li);
         }
@@ -28,13 +28,24 @@ btn.addEventListener("click", async () => {
     }
 });
 
-inputCollege.addEventListener("input", function (){
+inputUni.addEventListener("input", function () {
     inputState.setAttribute("disabled", "");
-    
+    inputState.setAttribute("placeholder", "");
+    if (this.value == "") {
+        inputState.removeAttribute("disabled");
+        inputState.setAttribute("placeholder", "Enter State Name");
+    }
 });
 
-inputState.addEventListener("input", ()=>{
-    inputCollege.setAttribute("disabled", "");
+inputState.addEventListener("input", function () {
+    inputUni.setAttribute("disabled", "");
+    inputUni.setAttribute("placeholder", "");
+
+    if (this.value == "") {
+        inputUni.removeAttribute("disabled");
+        inputUni.setAttribute("placeholder", "Enter University Name");
+
+    }
 });
 
 
