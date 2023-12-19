@@ -5,6 +5,7 @@ let btn = document.querySelector("#btn");
 let inputCountry = document.querySelector("#countryName");
 let inputUni = document.querySelector("#universityName");
 let inputState = document.querySelector("#stateName");
+let clear = document.querySelector("#clr");
 
 btn.addEventListener("click", async () => {
 
@@ -48,7 +49,19 @@ inputState.addEventListener("input", function () {
     }
 });
 
+clear.addEventListener("click", function(){
+    deleteList();
+});
 
+function deleteList(){
+    let list = document.querySelector("#list");
+
+    let li = list.lastElementChild;
+    while(li){
+        list.removeChild(li);
+        li = list.lastElementChild;
+    }
+}
 
 
 async function getUniNames(country) {
