@@ -29,6 +29,7 @@ btn.addEventListener("click", async () => {
     }
 });
 
+// Disabling and Enabling input fields as per requirement.
 inputUni.addEventListener("input", function () {
     inputState.setAttribute("disabled", "");
     inputState.setAttribute("placeholder", "");
@@ -49,6 +50,9 @@ inputState.addEventListener("input", function () {
     }
 });
 
+
+
+// Delete button implementation
 clear.addEventListener("click", function(){
     deleteList();
 });
@@ -64,6 +68,7 @@ function deleteList(){
 }
 
 
+// async funtion to get University list from API
 async function getUniNames(country) {
     try {
         let uniNames = await fetch(uniUrl + country);
