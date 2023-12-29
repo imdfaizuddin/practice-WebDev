@@ -11,3 +11,20 @@ body{
 h1{
     font-family: cursive;
 }
+button{
+    border-radius: 15px;
+    border: none;
+    background-color: coral;
+    padding: 5px 15px;
+    box-shadow: 0 5px #999;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    background-color: rgb(212, 107, 69);
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+  }
