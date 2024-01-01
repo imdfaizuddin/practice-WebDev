@@ -3,7 +3,7 @@
 //     color : "yellow"
 // }
 
-export const obj = {
+export const objbanana = {
     name : "banana",
     color : "yellow"
 }
