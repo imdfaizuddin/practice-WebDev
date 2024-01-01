@@ -25,9 +25,6 @@ app.get("/searching", (req, res)=>{
     res.send("Serach page");
 });
 
-// app.get("*", (req, res)=>{
-//     res.send("This path does not exist");
-// });
 
 app.get("/student/:username/:id/:roll", (req, res)=>{           //http://localhost:3000/student/apna/123/21
     console.log(req.params);                                //console.log(req.params);={ username: 'apna', id: '123', roll: '21' }
@@ -40,4 +37,8 @@ app.get("/search", (req,res)=>{
     console.log(req.query);
     let {q, color}= req.query;
     res.send(`searching for: ${q} and color ${color}`);
+});
+
+app.get("*", (req, res)=>{
+    res.send("This path does not exist");
 });
