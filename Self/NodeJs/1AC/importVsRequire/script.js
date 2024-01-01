@@ -1,4 +1,5 @@
 // const info = require("./Fruits");
-import {obj} from "./Fruits/apple.js";
+import {index} from "./Fruits/index.js";
 
-console.log(obj);
+console.log(index);
+console.log(index[0].name, index[0].color);
