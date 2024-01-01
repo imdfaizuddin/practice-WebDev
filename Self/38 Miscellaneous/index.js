@@ -11,10 +11,10 @@ app.get("/register", (req,res)=>{
 });
 
 app.post("/register", (req,res)=>{
-    // res.send(`Post request detected`);
+
     let {user , password} = req.body;
     console.log(req.body);
-    res.send(`Welcome ${user}!`);
+    res.send(`POST request detected. Welcome ${user}!`);
 });
 
 app.listen(port, ()=>{
