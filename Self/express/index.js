@@ -1,4 +1,5 @@
-const express = require ("express");
+// const express = require ("express");
+import express from "express";
 const app = express();
 let port = 3000;
 
@@ -28,7 +29,7 @@ app.get("/searching", (req, res)=>{
 //     res.send("This path does not exist");
 // });
 
-app.get("/:username/:id/:roll", (req, res)=>{           //http://localhost:3000/apna/123/21
+app.get("/student/:username/:id/:roll", (req, res)=>{           //http://localhost:3000/student/apna/123/21
     console.log(req.params);                                //console.log(req.params);={ username: 'apna', id: '123', roll: '21' }
     let { username , id , roll} = req.params;
     let htmlstr = `<h1>welcome to the page of @${username} id:${id} roll:${roll}</h1>`;
