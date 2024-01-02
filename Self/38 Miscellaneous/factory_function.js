@@ -12,3 +12,5 @@ let p1 = PersonMaker("Aalu", 25);
 let p2 = PersonMaker("Kalu", 26);
 console.log(p1.age, p1.name);
 console.log(p2.name, p2.age);
+p1.talk();
+p2.talk();
