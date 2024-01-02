@@ -9,5 +9,8 @@ Person.prototype.talk = function(){
 }
 
 // using new keyword to Create a person and object
+
 let p1 = new Person("adam", 25);
+
 let p2 = new Person("eve", 25);
+// p1.talk === p2.talk 
