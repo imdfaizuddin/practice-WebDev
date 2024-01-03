@@ -13,4 +13,17 @@ Person.prototype.talk = function(){
 let p1 = new Person("adam", 25);
 
 let p2 = new Person("eve", 25);
-// p1.talk === p2.talk 
+// p1.talk === p2.talk meaning they are using same prototype function
+
+class PersonClass{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    talk(){
+        console.log(`Hi, my name is ${this.name}`);
+    }
+    eat(){
+        console.log(`${this.name} age:${this.age} is eating.`);
+    }
+}
