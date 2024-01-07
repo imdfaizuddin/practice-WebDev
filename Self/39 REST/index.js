@@ -11,17 +11,20 @@ app.use(express.urlencoded({extended : true}));
 app.use(express.json());
 
 let posts = [
-    {
+    {   
+        id: "1a",
         username : "Adil",
         content : "I love coding"
     },
 
-    {
+    {   
+        id: "2b",
         username : "Dua",
         content : "Hard work is important"
     },
 
-    {
+    {   
+        id: "3c",
         username : "Kaif",
         content : "I am really cool"
     },
@@ -40,10 +43,15 @@ app.post("/posts", (req,res)=>{
     // posts.push(req.body);
     let {username , content} = req.body;
     posts.push({username, content});
-    console.log(username);
     res.redirect("/posts");
 });
 
+app.get("/posts/:id", (req,res)=>{
+    let {id} = req.params;
+    // console.log(id);
+    let post = posts.find((p)=> id === p.id);
+    res.render("view.ejs", { post });
+});
 app.get("/", (req, res)=>{
     res.send("welcome to root");
 });
