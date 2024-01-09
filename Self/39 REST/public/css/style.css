@@ -1,11 +1,19 @@
-h1{
+#heading{
     color: maroon;
 }
 
 .post{
     background-color: blanchedalmond;
+    padding: 10px;
 }
 
 .user{
     font-style: italic;
+}
+a{
+    text-decoration: none;
+    
+    border: 2px solid blue;
+    padding: 5px 10px;
+    border-radius: 8px;
 }
