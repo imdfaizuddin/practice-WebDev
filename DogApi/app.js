@@ -1,10 +1,6 @@
 let dogUrl = 'https://dog.ceo/api/breeds/image/random';
 
 let btn = document.querySelector("button");
-let p = document.querySelector("#result")
-
-// p.style.width = "600px";
-// p.style.height = "400px";
 
 btn.addEventListener("click", async ()=>{
     try {
