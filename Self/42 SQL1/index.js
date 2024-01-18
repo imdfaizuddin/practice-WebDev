@@ -7,6 +7,9 @@ const path = require("path");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"/views"));
+//for handling post req
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 // Create the connection to database
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -83,6 +86,49 @@ try{
 }catch(e){
   console.log("error", e);
 }
+});
+
+app.get("/user/:id/edit", (req,res)=>{
+  let {id} = req.params;
+  let q = `SELECT * FROM user WHERE id ="${id}"`;
+  connection.query(q, (err,result)=>{
+    if(err) throw error;
+    let user = result[0];
+    res.render("edit.ejs", {user});
+
+  });
+});
+
+app.post("/user/:id", (req,res)=>{
+  let {id} = req.params;
+  let {newUsername, password} = req.body;
+  let q = `SELECT * FROM user WHERE id= '${id}'`;
+  try{
+    connection.query(q, (err,result)=>{
+      if(err) throw err;
+      // console.log(result);
+      let pwd = result[0].password;
+      // console.log(pwd);
+      if( pwd=== password){
+        // console.log("matched");
+        let q = `UPDATE user SET username = "${newUsername}" WHERE id = "${id}"`;
+        connection.query(q,(err,result)=>{
+          try {
+          if(err) throw error;
+            
+          } catch (error) {
+            console.log("error",error);
+          }  
+          // res.send("username changed");
+          res.redirect("/user");
+        });
+      }else{
+        res.send("password not matched");
+      }
+    });
+  }catch(e){
+    console.log("error", e);
+  }
 });
 
 app.listen("8080", ()=>{
