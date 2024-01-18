@@ -73,6 +73,18 @@ app.get("/", (req,res)=>{
   });
 });
 
+app.get("/user", (req,res)=>{
+try{
+  connection.query("SELECT * FROM user", (err,result)=>{
+    if(err) throw err;
+    // console.log(result);
+    res.render("user.ejs", {result});
+  });
+}catch(e){
+  console.log("error", e);
+}
+});
+
 app.listen("8080", ()=>{
   console.log("server is listening to port 8080");
 });
