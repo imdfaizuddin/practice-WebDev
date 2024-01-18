@@ -23,12 +23,14 @@
             <th>id</th>
             <th>username</th>
             <th>email</th>
+            <th>Edit id</th>
         </tr>
         <% for(user of result){ %>
             <tr>
                 <td><%= user.id %></td>
                 <td><%= user.username %></td>
                 <td><%= user.email %></td>
+                <td><form method="GET" action="/user/<%= user.id %>/edit"><button>Edit</button></form></td>
             </tr>
             <% } %>
 
