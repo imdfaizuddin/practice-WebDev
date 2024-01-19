@@ -7,8 +7,9 @@
 </head>
 <body>
     <h2>Add new user:</h2>
-    <form action="">
+    <form method="POST" action="/add">
         <p>id: <%= user[0] %></p>
+        <input type="text" name="id" value="<%= user[0] %>" > <br><br>
         <input type="text" name="username" id="username" value="<%= user[1] %>"> <label for="username">username</label> <br> <br>
         <input type="text" name="email" id="email" value="<%= user[2] %>"> <label for="email">Email</label> <br> <br>
         <input type="text" name="password" id="password" value="<%= user[3] %>" > <label for="password">Password</label>
