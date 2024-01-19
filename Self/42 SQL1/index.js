@@ -4,12 +4,14 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const path = require("path");
+const methodOverride = require('method-override');
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"/views"));
 //for handling post req
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(methodOverride('_method'));
 // Create the connection to database
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -143,8 +145,8 @@ app.post("/add", (req,res)=>{
   let {id , username , email , password} = req.body;
   let user = [id, username, email, password ];
   let user2 = [[id, username, email, password ]];
-  let q = `INSERT INTO user (id ,username, email, password) VALUES (?,?,?,?)` // for 
-  let q2 = `INSERT INTO user (id ,username, email, password) VALUES ?`
+  let q = `INSERT INTO user (id ,username, email, password) VALUES (?,?,?,?)`  // for using with q
+  let q2 = `INSERT INTO user (id ,username, email, password) VALUES ?`          // for using with 2d array q2
   connection.query(q2, [user2], (err,result)=>{
     try {
       if(err) throw err;
@@ -155,6 +157,22 @@ app.post("/add", (req,res)=>{
     }
   });
 }); 
+
+app.delete("/delete/:id", (req,res)=>{
+  let {id} = req.params;
+  // console.log(id);
+  let q = `DELETE FROM user WHERE id ="${id}"`;
+  connection.query(q, (err,result)=>{
+    try {
+      if(err) throw err;
+      // console.log(result);
+      res.redirect("/");
+    } catch (error) {
+      console.log("error :-",error);
+    }
+  });
+});
+
 app.listen("8080", ()=>{
   console.log("server is listening to port 8080");
 });
