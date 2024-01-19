@@ -31,14 +31,14 @@ const connection = mysql.createConnection({
 //     password VARCHAR(50) NOT NULL
 //     )`;
 // // adding 100 users in user table using faker
-// let getUser = ()=> {
-//         return [
-//           faker.string.uuid(),
-//           faker.internet.userName(),
-//           faker.internet.email(),
-//           faker.internet.password(),
-//         ];
-//  }
+const getUser = ()=> {
+        return [
+          faker.string.uuid(),
+          faker.internet.userName(),
+          faker.internet.email(),
+          faker.internet.password(),
+        ];
+ }
 // query for adding 100 values using placeholder ? and 2d array [data]
 // let inputVal = `INSERT INTO user (id ,username, email, password) VALUES ?`;
   
@@ -63,6 +63,7 @@ const connection = mysql.createConnection({
   // data.push(getRandomUser());
   // console.log(data);
 
+// get reqest on "root" route 
 app.get("/", (req,res)=>{
   connection.query("SELECT COUNT(id) FROM user", (err,result)=>{
     try {
@@ -131,6 +132,29 @@ app.post("/user/:id", (req,res)=>{
   }
 });
 
+// adding new user
+app.get("/add", (req,res)=>{
+  let user = getUser();
+  // console.log(user);
+  res.render("add.ejs", {user});
+});
+
+app.post("/add", (req,res)=>{
+  let {id , username , email , password} = req.body;
+  let user = [id, username, email, password ];
+  let user2 = [[id, username, email, password ]];
+  let q = `INSERT INTO user (id ,username, email, password) VALUES (?,?,?,?)` // for 
+  let q2 = `INSERT INTO user (id ,username, email, password) VALUES ?`
+  connection.query(q2, [user2], (err,result)=>{
+    try {
+      if(err) throw err;
+      // console.log(result);
+      res.redirect("/");
+    } catch (e) {
+      console.log("error: ", e)
+    }
+  });
+}); 
 app.listen("8080", ()=>{
   console.log("server is listening to port 8080");
 });
