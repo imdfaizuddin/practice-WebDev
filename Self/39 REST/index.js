@@ -18,20 +18,20 @@ app.use(express.json());
 let posts = [
     {   
         id: uuidv4(),
-        username : "Adil",
-        content : "I love coding"
+        username : "Mahatma Gandhi",
+        content : "It is the quality of our work which will please God, not the quantity."
     },
 
     {   
         id: uuidv4(),
-        username : "Dua",
-        content : "Hard work is important"
+        username : "Joseph Joubert",
+        content : "He who has imagination without learning has wings but no feet."
     },
 
     {   
         id: uuidv4(),
-        username : "Kaif",
-        content : "I am really cool"
+        username : "Ralph Abernathy",
+        content : "Ralph Abernathy"
     },
 ]
 
