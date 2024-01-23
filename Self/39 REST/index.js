@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const port = 8080;
+const PORT = process.env.PORT || 8080;
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 const methodOverride = require('method-override');
@@ -31,7 +31,7 @@ let posts = [
     {   
         id: uuidv4(),
         username : "Ralph Abernathy",
-        content : "Ralph Abernathy"
+        content : "The industrial landscape is already littered with remains of once successful companies that could not adapt their strategic vision to altered conditions of competition."
     },
 ]
 
@@ -81,9 +81,9 @@ app.delete("/posts/:id", (req,res)=>{
     res.redirect("/posts");
 });
 app.get("/", (req, res)=>{
-    res.send("welcome to root");
+    res.redirect("/posts");
 });
 
-app.listen(port, ()=>{
-    console.log("app is listning to port:", port);
+app.listen(PORT, ()=>{
+    console.log("app is listning to port:", PORT);
 });
