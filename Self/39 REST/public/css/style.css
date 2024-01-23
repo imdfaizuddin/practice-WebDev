@@ -17,3 +17,18 @@ a{
     padding: 5px 10px;
     border-radius: 8px;
 }
+form{
+    display: inline;
+}
+#delete{
+    background: none;
+    border : 0px;
+}
+#delete:hover{
+    cursor: pointer;
+}
+
+img{
+    width: 25px;
+    height: 25px;
+}
