@@ -94,14 +94,18 @@ try{
 app.get("/user/:id/edit", (req,res)=>{
   let {id} = req.params;
   let q = `SELECT * FROM user WHERE id ="${id}"`;
-  connection.query(q, (err,result)=>{
-    if(err) throw error;
-    let user = result[0];
-    res.render("edit.ejs", {user});
-
-  });
+  try {
+    connection.query(q, (err,result)=>{
+      if(err) throw error;
+      let user = result[0];
+      res.render("edit.ejs", {user});
+    }); 
+  } catch (error) {
+    console.log("error:-",error);
+  }
 });
 
+// password authentication for editing username
 app.post("/user/:id", (req,res)=>{
   let {id} = req.params;
   let {newUsername, password} = req.body;
@@ -109,11 +113,11 @@ app.post("/user/:id", (req,res)=>{
   try{
     connection.query(q, (err,result)=>{
       if(err) throw err;
-      // console.log(result);
+      
       let pwd = result[0].password;
-      // console.log(pwd);
+      
       if( pwd=== password){
-        // console.log("matched");
+
         let q = `UPDATE user SET username = "${newUsername}" WHERE id = "${id}"`;
         connection.query(q,(err,result)=>{
           try {
@@ -122,7 +126,6 @@ app.post("/user/:id", (req,res)=>{
           } catch (error) {
             console.log("error",error);
           }  
-          // res.send("username changed");
           res.redirect("/user");
         });
       }else{
