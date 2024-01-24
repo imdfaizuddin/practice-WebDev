@@ -5,9 +5,9 @@ let btn = document.querySelector("button");
 btn.addEventListener("click", async ()=>{
     try {
         let link = await getDogPic();
-    // p.innerHTML = `<img src = "${link}" alt= "dog pic">`;
         let img = document.querySelector("#dogImg");
         img.setAttribute("src", link);
+        
     } catch (error) {
         console.log("error", error);
     }
