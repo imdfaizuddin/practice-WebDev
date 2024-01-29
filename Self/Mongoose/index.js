@@ -16,5 +16,8 @@ const userSchema = new mongoose.Schema({
   age: Number,
 });
 
-// const User = mongoose.model("user", userSchema);
+const User = mongoose.model("user", userSchema);
 // const Emp = mongoose.model("employees", userSchema);
+const user1 = new User({name: "Adil", email: "adil@gmail.com", age: 21});  //user1 obj or document
+
+user1.save();  //to save in db & returns a promise
