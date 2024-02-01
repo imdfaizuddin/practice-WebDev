@@ -14,12 +14,18 @@ class Student extends Person{
         super(name, age);
         this.marks = marks;
     }
+    study(){
+        console.log(`${this.name} is studying`);
+    }
 }
 
 class Teacher extends Person{
     constructor(name, age , subject){
         super(name , age);
         this.subject = subject;
+    }
+    getSubject(){
+        console.log(`${this.subject}`)
     }
 }
 
