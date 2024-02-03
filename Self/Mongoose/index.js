@@ -62,7 +62,13 @@ const User = mongoose.model("User", userSchema);
 //   console.log(err);
 // });
 
-User.findOneAndUpdate({name: "Bruce"},{age: 42},{new: true}).then((res)=>{
+// User.findOneAndUpdate({name: "Bruce"},{age: 42},{new: true}).then((res)=>{
+//   console.log(res);
+// }).catch((err)=>{
+//   console.log("Error is : ", err);
+// });
+
+User.findByIdAndUpdate("65ba6f188827f1cc17b6a5e9",{age: 41},{new: true}).then((res)=>{
   console.log(res);
 }).catch((err)=>{
   console.log("Error is : ", err);
