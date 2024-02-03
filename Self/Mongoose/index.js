@@ -78,3 +78,6 @@ const User = mongoose.model("User", userSchema);
 //   console.log(res)
 // })
 
+User.deleteMany({age: 51}).then(res=>{
+  console.log(res)
+})
