@@ -7,6 +7,7 @@ const Chat = require("./models/chat.js")
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 main().then(()=>{
     console.log("connection successful")
@@ -17,20 +18,13 @@ async function main() {
 
 }
 
-const chat1 = new Chat({
-    from: "Neha",
-    to: "Priya",
-    msg: "Send class notes",
-    created_at: new Date()
+//index route
+app.get("/", async (req,res)=>{
+    let chats = await Chat.find()
+    // console.log(chats);
+    res.render("index.ejs", {chats});
 });
 
-chat1.save().then(res =>{
-    console.log(res);
-}).catch(err => {console.log("Error is:", err)});
-
-app.get("/", (req,res)=>{
-    res.send("working");
-});
 app.listen(PORT, ()=>{
     console.log("server is listening to port: ", PORT);
 });
