@@ -45,7 +45,11 @@ app.post("/chats", (req,res)=>{
     ];
     // console.log(req.body);
     // console.log(from, msg , to);
-    Chat.insertMany(chat);
+    Chat.insertMany(chat).then(res =>{
+        console.log(res);
+    }).catch(err=>{
+        console.log("error is: ",err);
+    });
     res.redirect("/");
 });
 app.listen(PORT, ()=>{
