@@ -18,13 +18,20 @@
                 <p>Message: <%= chat.msg %></p>
                 <form method="GET" action="/chats/<%=chat.id %>/edit">
                     <button>Edit</button>
+                </form>
             </div>
             <p>to: <%= chat.to %></p>
             <hr>
             <p><%= chat.created_at.toString().split(" ")[4] %></p>
             <p><%= chat.created_at.toString().split(" ").slice(0 , 4).join("-") %></p>
+            <% let update = chat.updated_at %>
+            <% if(update) { %>
+                <p id="edited">Edited: <%= update.toString().split(" ").slice(0 , 5).join("-") %></p>
+            <% } %>
+            <form method="POST" action="/chats/<%= chat.id%>?_method=DELETE">
+                <BUtton class="delete">DELETE</BUtton>
+            </form>
         </div>
-        </form>
         <br>
     <% } %>
 </body>
