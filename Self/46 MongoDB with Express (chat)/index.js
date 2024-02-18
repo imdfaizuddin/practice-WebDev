@@ -74,8 +74,16 @@ app.put("/chats/:id", async (req, res) => {
     let { id } = req.params;
     let { msg: newMsg } = req.body;
     // console.log(id);
-    let updatedChat = await Chat.findByIdAndUpdate(id, { msg: newMsg }, { new: true, runValidators: true });
+    let updatedChat = await Chat.findByIdAndUpdate(id, { msg: newMsg, updated_at: new Date() }, { new: true, runValidators: true });
     // console.log(updatedChat);
+    res.redirect("/chats");
+});
+
+// DELETE route
+app.delete("/chats/:id", async (req,res)=>{
+    let {id} = req.params;
+    let delUser = await Chat.findOneAndDelete({_id: id});
+    // console.log(delUser); //returns deleted document
     res.redirect("/chats");
 });
 
