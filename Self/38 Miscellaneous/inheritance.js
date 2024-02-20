@@ -11,7 +11,7 @@ class Person{
 
 class Student extends Person{
     constructor(name , age , marks){
-        super(name, age);
+        super(name, age);               //Parent class's constructor is being called
         this.marks = marks;
     }
     study(){
@@ -21,7 +21,7 @@ class Student extends Person{
 
 class Teacher extends Person{
     constructor(name, age , subject){
-        super(name , age);
+        super(name , age);              //Parent class's constructor is being called
         this.subject = subject;
     }
     getSubject(){
