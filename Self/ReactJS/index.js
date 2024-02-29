@@ -2,6 +2,46 @@
 
 
 
+// ===============================================================================================================================
+// https://codesandbox.io/p/sandbox/react-styling-practice-forked-lfdsmq?file=%2Fsrc%2Findex.js%3A1%2C1-37%2C1
+//Create a React app from scratch.
+//Show a single h1 that says "Good morning" if between midnight and 12PM.
+//or "Good Afternoon" if between 12PM and 6PM.
+//or "Good evening" if between 6PM and midnight.
+//Apply the "heading" style in the styles.css
+//Dynamically change the color of the h1 using inline css styles.
+//Morning = red, Afternoon = green, Night = blue.
+import React from "react";
+import ReactDOM from "react-dom";
+
+const customStyle = {
+  color: "",
+};
+const greetings = ["Good morning", "Good Afternoon", "Good evening"];
+let greet = getGreeting();
+// console.log(new Date().getHours());
+function getGreeting() {
+  let hour = new Date().getHours();
+  if (hour < 12) {
+    customStyle.color = "red";
+    return greetings[0];
+  } else if (hour >= 12 && hour < 18) {
+    customStyle.color = "green";
+    return greetings[1];
+  } else if (hour >= 18 && hour <= 23) {
+    customStyle.color = "blue";
+    return greetings[2];
+  }
+}
+
+ReactDOM.render(
+  <h1 className="heading" style={customStyle}>
+    {greet}
+  </h1>,
+  document.querySelector("#root")
+);
+
+
 
 
 // ===========================================================================================================================
@@ -73,6 +113,7 @@ ReactDOM.render(
 
 
 // ==============================================================================================================
+// https://codesandbox.io/p/sandbox/javascript-expressions-in-jsx-practice-forked-k2yftd?file=%2Fsrc%2Findex.js
 //Create a react app from scratch.
 //It should display 2 paragraph HTML elements.
 //The paragraphs should say:
@@ -118,6 +159,7 @@ ReactDOM.render(
 
 
 // ==================================================================================================================================
+// https://codesandbox.io/p/sandbox/javascript-expressions-in-jsx-forked-9f279y?file=%2Fsrc%2Findex.js%3A4%2C20
 //Create a react app from scratch.
 //It should display a h1 heading.
 //It should display an unordered list (bullet points).
