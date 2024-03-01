@@ -2,6 +2,63 @@
 
 
 
+// =================================================================================================================================
+// REACT COMPONENTS 
+// index.js:
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+
+//App.jsx:
+import React from "react";
+import ReactDOM from "react-dom";
+import Heading from "./Heading";
+function App() {
+  return <Heading />;
+}
+
+export default App;
+
+
+//Heading.jsx:
+import React from "react";
+
+let greeting;
+
+const date = new Date(0, 0, 0, 10);
+
+const currentTime = date.getHours();
+const customStyle = {
+  color: "",
+};
+
+if (currentTime < 12) {
+  greeting = "Good Morning";
+  customStyle.color = "red";
+} else if (currentTime < 18) {
+  greeting = "Good Afternoon";
+  customStyle.color = "green";
+} else {
+  greeting = "Good Night";
+  customStyle.color = "blue";
+}
+
+function Heading() {
+  return (
+    <h1 className="heading" style={customStyle}>
+      {greeting}
+    </h1>
+  );
+}
+
+export default Heading;
+
+
+
+
 // ===============================================================================================================================
 // https://codesandbox.io/p/sandbox/react-styling-practice-forked-lfdsmq?file=%2Fsrc%2Findex.js%3A1%2C1-37%2C1
 //Create a React app from scratch.
