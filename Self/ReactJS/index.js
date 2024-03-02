@@ -3,6 +3,45 @@
 
 
 // =============================================================================================================================
+// 310- Event handling in React.
+// App.jsx
+import React, { useState } from "react";
+
+function App() {
+  const [headingText, setHeading] = useState("Hello");
+  const [color, fn] = useState({ backgroundColor: "white" });
+
+  function updateHeading() {
+    setHeading("Submitted");
+  }
+
+  function mouseOver() {
+    fn({ backgroundColor: "black", color: "white" });
+  }
+  function mouseOut() {
+    fn({ backgroundColor: "white", color: "#50a3a2" });
+  }
+  return (
+    <div className="container">
+      <h1>{headingText}</h1>
+      <input type="text" placeholder="What's your name?" />
+      <button
+        style={color}
+        onClick={updateHeading}
+        onMouseOver={mouseOver}
+        onMouseOut={mouseOut}
+      >
+        Submit
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+// =============================================================================================================================
 // 309- ES6 Destructuring 
 // Index.js
 import animals from "./data";
@@ -86,10 +125,10 @@ function App() {
   let time = new Date().toLocaleTimeString();
   const [val, fn] = useState(time);
 
-  setInterval(getTime, 1000);
+  setInterval(getTime, 1000);     //-----------------
 
   function getTime() {
-    fn(new Date().toLocaleTimeString());
+    fn(new Date().toLocaleTimeString()); //-------------
   }
   return (
     <div className="container">
