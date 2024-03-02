@@ -3,6 +3,31 @@
 
 
 // =============================================================================================================================
+// 307 - useState Hook practice
+// App.jsx
+import React, { useState } from "react";
+
+function App() {
+  let time = new Date().toLocaleTimeString();
+  const [val, fn] = useState(time);
+
+  setInterval(getTime, 1000);
+
+  function getTime() {
+    fn(new Date().toLocaleString());
+  }
+  return (
+    <div className="container">
+      <h1>{time}</h1>
+      <button onClick={getTime}>Get Time</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+// =============================================================================================================================
 // 306- React Hooks useState 
 // App.jsx:
 import React, { useState } from "react";
