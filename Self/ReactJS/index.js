@@ -1,7 +1,61 @@
+// 304, 301, 302, 299, 
+
+
+
+// =============================================================================================================================
+// 304 -Conditional Rendering Practice 
+// App.js: 
+import React from "react";
+import Form from "./Form";
+
+var userIsRegistered = false;
+
+function App() {
+  return (
+    <div className="container">
+      <Form userIsRegistered={userIsRegistered} />
+    </div>
+  );
+}
+
+export default App;
+
+// Form.jsx:
+
+import React from "react";
+import Input from "./Input";
+function Form(props) {
+  return (
+    <form className="form">
+      <Input type="text" placeholder="Username" />
+      <Input type="password" placeholder="Password" />
+      {/* IMPORTANT: */}
+      {props.userIsRegistered === false && ( <Input type="password" placeholder="Confirm Password" />  )}
+      {/* TERNERY OPERATOR: */}
+      {props.userIsRegistered ? (
+        <button type="submit">Login</button>
+      ) : (
+        <button type="submit">Register</button>
+      )}
+    </form>
+  );
+}
+
+export default Form;
+
+// Input.jsx:
+import React from "react";
+
+export default (props) => (
+  <input type={props.type} placeholder={props.placeholder} />
+);
+
+
 
 
 
 // ====================================================================================================================================
+// 294
 // Keeper App homepage
 // Index.js
 import React from "react";
