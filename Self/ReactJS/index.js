@@ -113,6 +113,37 @@ function App() {
 
 export default App;
 
+// ========================================================================================================================================
+// 300 - Map , Filter , Reduce
+
+import emojipedia from "./emojipedia";
+var numbers = [3, 56, 2, 48, 5];
+
+//Map -Create a new array by doing something with each item in an array.
+
+//Filter - Create a new array by keeping the items that return true.
+
+//Reduce - Accumulate a value by doing something to each item in an array.
+
+//Find - find the first item that matches from an array.
+
+//FindIndex - find the index of the first item that matches.
+
+const ans = emojipedia.map((arr) => arr.meaning.slice(0, 100));
+
+console.log(ans);
+
+const filter = numbers.filter((arr) => arr > 10);
+console.log(filter);
+
+const reduce = numbers.reduce((sum, arr) => (sum += arr * 10));
+console.log(reduce);
+
+const find = numbers.find((arr) => arr > 10);
+console.log(find);
+
+const findIndex = numbers.findIndex((arr) => arr > 10);
+console.log(findIndex);
 
 
 
