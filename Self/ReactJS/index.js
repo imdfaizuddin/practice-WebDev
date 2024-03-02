@@ -52,6 +52,68 @@ export default (props) => (
 
 
 
+// =============================================================================================================================
+// 301 - Arrow function 
+
+// index.js
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+var numbers = [3, 56, 2, 48, 5];
+
+////Map -Create a new array by doing something with each item in an array.
+let newNumbers = numbers.map((x) => x * 2);
+console.log(newNumbers);
+
+//////Filter - Create a new array by keeping the items that return true.
+newNumbers = numbers.filter((num) => num < 10);
+console.log(newNumbers);
+
+//Reduce - Accumulate a value by doing something to each item in an array.
+var newNumber = numbers.reduce(
+  (accumulator, currentNumber) => accumulator + currentNumber
+);
+console.log(newNumber);
+////Find - find the first item that matches from an array.
+newNumber = numbers.find((num) => num > 10);
+console.log(newNumber);
+
+////FindIndex - find the index of the first item that matches.
+newNumber = numbers.findIndex((num) => num > 10);
+console.log(newNumber);
+
+// App.jsx
+
+import React from "react";
+import Entry from "./Entry";
+import emojipedia from "../emojipedia";
+
+function App() {
+  return (
+    <div>
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+      <dl className="dictionary">
+        {emojipedia.map((emojiTerm) => (
+          <Entry
+            key={emojiTerm.id}
+            emoji={emojiTerm.emoji}
+            name={emojiTerm.name}
+            description={emojiTerm.meaning}
+          />
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+export default App;
+
+
 
 
 // ====================================================================================================================================
