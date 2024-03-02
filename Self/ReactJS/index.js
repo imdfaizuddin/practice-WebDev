@@ -3,6 +3,81 @@
 
 
 // =============================================================================================================================
+// 309- ES6 Destructuring 
+// Index.js
+import animals from "./data";
+import cars from "./practice";
+// const []
+let [cat, dog] = animals;
+const { name, sound } = cat;
+const { name: name2, sound: sound2 } = dog;
+console.log(name, sound);
+console.log(name2, sound2);
+// CHALLENGE: uncomment the code below and see the car stats rendered
+const [honda, tesla] = cars;
+const [teslaTopColour] = tesla.coloursByPopularity;
+const [hondaTopColour] = honda.coloursByPopularity;
+// const { topSpeed: hondaTopSpeed } = honda.speedStats;
+const {
+  speedStats: { topSpeed: hondaTopSpeed },
+} = honda;
+const { topSpeed: teslaTopSpeed } = tesla.speedStats;
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <table>
+    <tr>
+      <th>Brand</th>
+      <th>Top Speed</th>
+    </tr>
+    <tr>
+      <td>{tesla.model}</td>
+      <td>{teslaTopSpeed}</td>
+      <td>{teslaTopColour}</td>
+    </tr>
+    <tr>
+      <td>{honda.model}</td>
+      <td>{hondaTopSpeed}</td>
+      <td>{hondaTopColour}</td>
+    </tr>
+  </table>,
+  document.getElementById("root")
+);
+
+// data.js:
+let animals = [];
+export default animals = [
+  { name: "cat", sound: "meow" },
+  { name: "dog", sound: "woof" },
+];
+
+//practice.js:
+const cars = [
+  {
+    model: "Honda Civic",
+    //The top colour refers to the first item in the array below:
+    //i.e. hondaTopColour = "black"
+    coloursByPopularity: ["black", "silver"],
+    speedStats: {
+      topSpeed: 140,
+      zeroToSixty: 8.5,
+    },
+  },
+  {
+    model: "Tesla Model 3",
+    coloursByPopularity: ["red", "white"],
+    speedStats: {
+      topSpeed: 150,
+      zeroToSixty: 3.2,
+    },
+  },
+];
+
+export default cars;
+
+
+// =============================================================================================================================
 // 307 - useState Hook practice
 // App.jsx
 import React, { useState } from "react";
@@ -14,11 +89,11 @@ function App() {
   setInterval(getTime, 1000);
 
   function getTime() {
-    fn(new Date().toLocaleString());
+    fn(new Date().toLocaleTimeString());
   }
   return (
     <div className="container">
-      <h1>{time}</h1>
+      <h1>{val}</h1>
       <button onClick={getTime}>Get Time</button>
     </div>
   );
