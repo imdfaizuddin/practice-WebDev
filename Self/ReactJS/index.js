@@ -145,6 +145,64 @@ console.log(find);
 const findIndex = numbers.findIndex((arr) => arr > 10);
 console.log(findIndex);
 
+// ====================================================================================================================================
+// 299 - Mapping components practice
+// App.jsx
+import React from "react";
+import Card from "./Card";
+import emojipedia from "../emojipedia";
+
+function getEmoji(emoji) {
+  return (
+    <Card
+      key={emoji.id}
+      id={emoji.id}
+      emoji={emoji.emoji}
+      name={emoji.name}
+      meaning={emoji.meaning}
+    />
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+
+      <dl className="dictionary">
+        {emojipedia.map(getEmoji)}
+        {/* {emojipedia.map(getEmoji)} */}
+        {/* {emojipedia.map(getEmoji)} */}
+      </dl>
+    </div>
+  );
+}
+
+export default App;
+
+// Card.jsx:
+import React from "react";
+
+function Card(props) {
+  return (
+    <div className="term">
+      <span className="id">{props.id}</span>
+      <dt>
+        <span className="emoji" role="img" aria-label={props.name}>
+          {props.emoji}
+        </span>
+        <span>{props.name}</span>
+      </dt>
+      <dd>{props.meaning}</dd>
+    </div>
+  );
+}
+
+export default Card;
+
+
 
 
 // ====================================================================================================================================
