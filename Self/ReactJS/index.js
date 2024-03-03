@@ -1,4 +1,77 @@
 // 304, 301, 302, 299, 
+// 313 - 314, 
+
+
+// =============================================================================================================================
+// 313-314 Changing complex state practice
+// App.jsx:
+import React, { useState } from "react";
+
+function App() {
+  const [contact, setContact] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+  });
+
+  function getInput(event) {
+    const { name, value } = event.target;
+    setContact((prev) => {
+      if (name === "fName") {
+        return {
+          fName: value,
+          lName: prev.lName,
+          email: prev.email,
+        };
+      } else if (name === "lName") {
+        return {
+          fName: prev.fName,
+          lName: value,
+          email: prev.email,
+        };
+      } else if (name === "email") {
+        return {
+          fName: prev.fName,
+          lName: prev.lName,
+          email: value,
+        };
+      }
+    });
+  }
+
+  return (
+    <div className="container">
+      <h1>
+        Hello {contact.fName} {contact.lName}
+      </h1>
+      <p>{contact.email}</p>
+      <form>
+        <input
+          name="fName"
+          placeholder="First Name"
+          value={contact.fName}
+          onChange={getInput}
+        />
+        <input
+          name="lName"
+          placeholder="Last Name"
+          value={contact.lName}
+          onChange={getInput}
+        />
+        <input
+          name="email"
+          placeholder="Email"
+          value={contact.email}
+          onChange={getInput}
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
 
 
 
