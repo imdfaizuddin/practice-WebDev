@@ -3,6 +3,122 @@
 
 
 // ==========================================================================================================================
+// To-Do app Strike - through & delete items:
+
+// App.jsx:
+import React, { useState } from "react";
+import ListItem from "./ListItem";
+// import data, { count } from "./data";
+function App() {
+  const [item, changeVal] = useState("");
+  const [data, changeData] = useState([]);
+  // let count = 0;
+  function getItemName(event) {
+    const { name, value } = event.target;
+    changeVal(value);
+    // console.log(item);
+  }
+  function addItem(event) {
+    let count = data.length + 1;
+    console.log("click");
+    changeData((prevItems) => [
+      ...prevItems,
+      {
+        id: count,
+        value: item,
+      },
+    ]);
+    changeVal("");
+    event.preventDefault();
+  }
+
+  function deleteItem(index) {
+    console.log("deleted");
+    changeData((prev) => {
+      const data = prev.filter((prev) => {
+        return prev.id != index;
+      });
+      return data;
+    });
+  }
+
+  return (
+    <div className="container">
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <form className="form" onSubmit={addItem}>
+        <input
+          name="itemName"
+          type="text"
+          onChange={getItemName}
+          value={item}
+        />
+        <button type="submit">
+          <span>Add</span>
+        </button>
+      </form>
+      <div>
+        <ul>
+          {data.map((data) => {
+            return (
+              <ListItem
+                key={data.id}
+                id={data.id}
+                value={data.value}
+                delete={deleteItem}
+              />
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+// ListItem.jsx:
+import React, { useState } from "react";
+import App from "./App";
+function ListItem(props) {
+  const [custom, setStyle] = useState("");
+  const [strike, setStrike] = useState(false);
+  const customStyle = {
+    textDecoration: custom,
+  };
+  function strikeThrough() {
+    console.log("working");
+    if (custom === "") {
+      setStyle("line-through");
+    } else {
+      setStyle("");
+    }
+  }
+  function isClicked() {
+    setStrike(!strike);
+  }
+  return (
+    <div
+      onClick={() => {
+        props.delete(props.id);
+      }}
+      style={{
+        textDecoration: strike === true ? "line-through" : "none",
+      }}
+    >
+      <li>{props.value}</li>
+    </div>
+  );
+}
+
+export default ListItem;
+
+
+
+
+
+// ==========================================================================================================================
 // 315 Spread Operator
 import React, { useState } from "react";
 
