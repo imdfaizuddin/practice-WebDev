@@ -3,7 +3,7 @@
 
 
 // ==========================================================================================================================
-// To-Do app Strike - through & delete items:
+//316-317 To-Do app Strike - through & delete items:
 
 // App.jsx:
 import React, { useState } from "react";
@@ -32,6 +32,7 @@ function App() {
     event.preventDefault();
   }
 
+  //Delete items
   function deleteItem(index) {
     console.log("deleted");
     changeData((prev) => {
