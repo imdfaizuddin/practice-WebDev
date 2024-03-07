@@ -3,6 +3,114 @@
 
 
 // ==========================================================================================================================
+// 319 Keeper App part 3 
+// Challenge part 1
+//CHALLENGE:
+//1. Implement the add note functionality.
+//- Create a constant that keeps track of the title and content.
+//- Pass the new note back to the App.
+//- Add new note to an array.
+//- Take array and render seperate Note components for each item.
+
+// App.jsx:
+import React, { useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
+
+function App() {
+  const [data, setData] = useState([]);
+  //taken 'event' and 'input' from CreateArea
+  function formSubmit(event, input) {
+    console.log("clicked");
+    event.preventDefault();
+    console.log(data);
+    setData((prev) => [...prev, input]);
+  }
+
+  return (
+    <div>
+      <Header />
+      <CreateArea submit={formSubmit} />
+      <Note key={1} title="Note title" content="Note content" />
+      {/* Mapped the values here to Notes component */}
+      {data.map((data, index) => {            
+        console.log(data);
+        return (
+          <Note
+            key={index}
+            id={index}
+            title={data.title}
+            content={data.content}
+          />
+        );                                  
+      })}                                
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+
+// CreateArea.jsx:
+import React, { useState } from "react";
+
+function CreateArea(props) {
+  //React hook to handle input
+  const [input, setInput] = useState({
+    title: "",
+    content: "",
+  });
+  //handling inputs
+  function handleInput(event) {
+    const { name, value } = event.target;
+    setInput((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  }
+
+  return (
+    <div>
+      <form>
+        <input
+          name="title"
+          placeholder="Title"
+          onChange={handleInput}
+          value={input.title}
+        />
+        <textarea
+          name="content"
+          placeholder="Take a note..."
+          rows="3"
+          onChange={handleInput}
+          value={input.content}
+        />
+        <button
+          onClick={() => {    
+            const retn = props.submit(event, input);        //passing the 'event' and 'input' values to App.jsx
+            setInput({
+              title: "",
+              content: "",
+            });
+            return retn;
+          }}
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default CreateArea;
+
+
+
+// ==========================================================================================================================
 //316-317 To-Do app Strike - through & delete items:
 
 // App.jsx:
