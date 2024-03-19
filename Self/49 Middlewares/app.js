@@ -9,6 +9,7 @@ app.use((req,res,next)=>{
     console.log("time: ",new Date(Date.now()).toString())
     console.log(method, path,responseTime,hostname)
     next();  //If the current middleware function does not end the request-response cycle, it must call next() to pass control to the next middleware function. DOCS: Go to Express -> middlewares
+    // console.log("This is after next");  // This is possible and will be executed but its not best practice. We can use 'return next()' to avoid this issue.
 })
 //This is the next middleware function
 app.use((req,res,next)=>{
