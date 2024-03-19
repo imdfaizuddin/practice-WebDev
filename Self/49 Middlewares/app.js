@@ -8,9 +8,9 @@ app.use((req,res,next)=>{
     console.log("hi, i am middleware")
     console.log("time: ",new Date(Date.now()).toString())
     console.log(method, path,responseTime,hostname)
-    next();
+    next();  //If the current middleware function does not end the request-response cycle, it must call next() to pass control to the next middleware function. DOCS: Go to Express -> middlewares
 })
-
+//This is the next middleware function
 app.use((req,res,next)=>{
     console.log("I am 2nd middleware");
     next();
