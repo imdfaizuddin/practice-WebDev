@@ -26,6 +26,7 @@ app.use("/random", (req, res, next) => {
 });
 
 // ------------------------------------------------------------------------------------------------------------------------
+// give access to /api route 'data' if token in query string = giveaccess (/api?token=giveaccess)
 app.use("/api", (req,res,next)=>{
     let {token} = req.query;
     if(token === "giveaccess"){
@@ -37,6 +38,7 @@ app.use("/api", (req,res,next)=>{
 app.get("/api", (req,res)=>{
     res.send("data");
 });
+// ------------------------------------------------------------------------------------------------------------------------
 
 app.get("/", (req, res) => {
     res.send("root");
