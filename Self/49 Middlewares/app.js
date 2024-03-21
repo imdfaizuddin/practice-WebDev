@@ -3,7 +3,7 @@ const app = express();
 
 
 //Middlewares are written in start of code because once response is sent middlewares are not accessed.
-// App.use is a middleware its always executed when request is sent to any path
+// App.use is a middleware its always executed when request is sent to any path, if no path defined it means "/" i.e execute for all paths.
 app.use((req, res, next) => {
     // Destructuring req to use as utility middleware and log method, path,responseTime, hostname , query
     let { method, path, hostname, query } = req;
@@ -24,6 +24,20 @@ app.use("/random", (req, res, next) => {
     console.log("i am middleware at /random path");
     next();
 });
+
+// ------------------------------------------------------------------------------------------------------------------------
+app.use("/api", (req,res,next)=>{
+    let {token} = req.query;
+    if(token === "giveaccess"){
+        next();
+    }else{
+        res.send("ACCESS DENIED");
+    }
+})
+app.get("/api", (req,res)=>{
+    res.send("data");
+});
+
 app.get("/", (req, res) => {
     res.send("root");
 });
