@@ -39,6 +39,19 @@ app.get("/api", (req,res)=>{
     res.send("data");
 });
 // ------------------------------------------------------------------------------------------------------------------------
+//passing middleware as function similar to above code
+const checkToken = (req,res,next)=>{
+    let {token} = req.query;
+    if(token === "giveaccess"){
+        next();
+    }else{
+        res.send("ACCESS DENIED");
+    }
+}
+app.get("/api/check", checkToken, (req,res)=>{
+    res.send("data")
+})
+// ------------------------------------------------------------------------------------------------------------------------
 
 app.get("/", (req, res) => {
     res.send("root");
