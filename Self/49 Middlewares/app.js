@@ -52,7 +52,15 @@ app.get("/api/check", checkToken, (req,res)=>{
     res.send("data")
 })
 // ------------------------------------------------------------------------------------------------------------------------
-
+//-------------------ERROR Handling----------------------------------------------
+app.get("/xyz", (req,res)=>{
+    xyz === xyz;
+});
+app.use((err,req,res,next)=>{
+    console.log("---------ERROR--------")
+    // next(); // this next will search for next non-error handling middleware.
+    next(err); //to trigger error handling middlewares.
+})
 app.get("/", (req, res) => {
     res.send("root");
 });
