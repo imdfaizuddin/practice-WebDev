@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const ExpressError = require("./ExpressError");
 
 //Middlewares are written in start of code because once response is sent middlewares are not accessed.
 // App.use is a middleware its always executed when request is sent to any path, if no path defined it means "/" i.e execute for all paths.
@@ -27,36 +27,36 @@ app.use("/random", (req, res, next) => {
 
 // ------------------------------------------------------------------------------------------------------------------------
 // give access to /api route 'data' if token in query string = giveaccess (/api?token=giveaccess)
-app.use("/api", (req,res,next)=>{
-    let {token} = req.query;
-    if(token === "giveaccess"){
+app.use("/api", (req, res, next) => {
+    let { token } = req.query;
+    if (token === "giveaccess") {
         next();
-    }else{
+    } else {
         res.send("ACCESS DENIED");
     }
 })
-app.get("/api", (req,res)=>{
+app.get("/api", (req, res) => {
     res.send("data");
 });
 // ------------------------------------------------------------------------------------------------------------------------
 //passing middleware as function similar to above code
-const checkToken = (req,res,next)=>{
-    let {token} = req.query;
-    if(token === "giveaccess"){
+const checkToken = (req, res, next) => {
+    let { token } = req.query;
+    if (token === "giveaccess") {
         next();
-    }else{
-        res.send("ACCESS DENIED");
     }
+    throw new ExpressError(401, "ACCESS DENIED!");
 }
-app.get("/api/check", checkToken, (req,res)=>{
+
+app.get("/api2/check", checkToken, (req, res) => {
     res.send("data")
-})
+});
 // ------------------------------------------------------------------------------------------------------------------------
 //-------------------ERROR Handling----------------------------------------------
-app.get("/xyz", (req,res)=>{
+app.get("/xyz", (req, res) => {
     xyz === xyz;
 });
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
     console.log("---------ERROR--------")
     // next(); // this next will search for next non-error handling middleware.
     next(err); //to trigger error handling middlewares.
