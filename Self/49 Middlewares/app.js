@@ -45,7 +45,7 @@ const checkToken = (req, res, next) => {
     if (token === "giveaccess") {
         next();
     }
-    throw new ExpressError(401, "ACCESS DENIED!");
+    throw new ExpressError(401, "ACCESS DENIED!"); // using custom error class ExpressError. sending status and message values to ExpressError class's constructor.
 }
 
 app.get("/api2/check", checkToken, (req, res) => {
@@ -56,11 +56,18 @@ app.get("/api2/check", checkToken, (req, res) => {
 app.get("/xyz", (req, res) => {
     xyz === xyz;
 });
+app.get("/admin", (req,res)=>{
+    throw new ExpressError(403, "Access to admin denied") // sending status and message values to ExpressError class's constructor.
+})
+//Error handling middleware are in the end
 app.use((err, req, res, next) => {
     console.log("---------ERROR--------")
     // next(); // this next will search for next non-error handling middleware.
-    next(err); //to trigger error handling middlewares.
+    // next(err); //to trigger error handling middlewares.
+    let {status = 500, message = "some Error Occurred"} = err;    //extracting status and message from error & giving them default values.
+    res.status(status).send(message);
 })
+// ------------------------------------------------------------------------------------------------------------------------
 app.get("/", (req, res) => {
     res.send("root");
 });
