@@ -7,9 +7,9 @@ function Navbar(props){
     },[])
     useEffect(()=>{
         alert("nav changed")
-    },[nav])
+    },[nav,props.count])
     useEffect(()=>{
-        alert("changed")
+        alert("every render of Navbar")
     })
     useEffect(()=>{
         return ()=>{

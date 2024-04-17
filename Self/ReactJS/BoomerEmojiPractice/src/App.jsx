@@ -17,7 +17,9 @@ function App() {
   return (
     <>
       <div>
-      <Navbar color={"light"+"green"}/>
+      <Navbar color={"light"+"green"} 
+        count = {count}
+      />
         
       </div>
       <h1>Vite + React</h1>
