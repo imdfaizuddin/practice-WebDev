@@ -4,6 +4,9 @@ function Navbar(props){
     const [nav, changeNav] = useState(0)
     useEffect(()=>{
         alert("first render")
+        return ()=>{
+            alert("nav unmounted")
+        }
     },[])
     useEffect(()=>{
         alert("nav changed")
@@ -11,11 +14,9 @@ function Navbar(props){
     useEffect(()=>{
         alert("every render of Navbar")
     })
-    useEffect(()=>{
-        return ()=>{
-            alert("nav unmounted")
-        }
-    },[])
+    // useEffect(()=>{
+        
+    // },[])
     return <nav>
         <ul style={{color:`${props.color}`}}>
             <li>Home</li>
