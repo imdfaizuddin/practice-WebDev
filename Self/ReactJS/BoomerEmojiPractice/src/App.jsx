@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react'
+import { useState , useEffect, useRef} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,6 +6,7 @@ import Navbar from "./assets/Navbar"
 
 function App() {
   const [count, setCount] = useState(2)
+  // useEffect hook example
   useEffect(()=>{
     alert("Welcome")
   },[])
@@ -13,7 +14,13 @@ function App() {
   useEffect(()=>{
     alert("Count changed")
   },[count])
-  
+  // useRef hook example
+  const a = useRef(0)
+
+  useEffect(()=>{
+    a.current = a.current + 1 //value persists after every render
+    console.log('rendering and the value of a is', a.current)
+  })
   return (
     <>
       <div>
