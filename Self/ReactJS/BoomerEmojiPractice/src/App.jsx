@@ -6,6 +6,7 @@ import Navbar from "./assets/Navbar"
 
 function App() {
   const [count, setCount] = useState(2)
+  const btnRef = useRef()
   // useEffect hook example
   useEffect(()=>{
     alert("Welcome")
@@ -31,7 +32,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount(count*2)}>
+        <button ref={btnRef} onClick={() => setCount(count*2)}>
           count is {count}
         </button>
         <p>
@@ -41,6 +42,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <button onClick={()=>{btnRef.current.style.display = "none"}}>
+          Btn none
+        </button>
     </>
   )
 }
