@@ -42,8 +42,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <button onClick={()=>{btnRef.current.style.display = "none"}}>
+      <button onClick={()=>{btnRef.current.style.display = "none" ; setCount(count + 1)}}>
           Btn none
+        </button>
+      <button onClick={()=>{btnRef.current.style.display = "inline"}}>
+          Btn inline
         </button>
     </>
   )
