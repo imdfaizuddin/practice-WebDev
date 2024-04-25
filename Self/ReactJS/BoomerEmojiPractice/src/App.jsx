@@ -6,22 +6,26 @@ import Navbar from "./assets/Navbar"
 
 function App() {
   const [count, setCount] = useState(2)
-  const btnRef = useRef()
   // useEffect hook example
   useEffect(()=>{
     alert("Welcome")
   },[])
-
+  
   useEffect(()=>{
     alert("Count changed")
   },[count])
   // useRef hook example
   const a = useRef(0)
+  const btnRef = useRef()
+  const inputRef = useRef(null)
 
   useEffect(()=>{
     a.current = a.current + 1 //value persists after every render
     console.log('rendering and the value of a is', a.current)
   })
+  function handleInputClick(){
+    inputRef.current.focus()
+  }
   return (
     <>
       <div>
@@ -47,6 +51,11 @@ function App() {
         </button>
       <button onClick={()=>{btnRef.current.style.display = "inline"}}>
           Btn inline
+        </button>
+        <br/>
+        <input type='text' ref={inputRef}/>
+        <button onClick={handleInputClick}>
+          Focus on Input
         </button>
     </>
   )
