@@ -39,20 +39,17 @@ function App() {
         <button ref={btnRef} onClick={() => setCount(count*2)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* using useRef for DOM manipulation (selecting count btn) and Hide/unhide it  */}
       <button onClick={()=>{btnRef.current.style.display = "none" ; setCount(count + 1)}}>
-          Btn none
+          count btn hide
         </button>
       <button onClick={()=>{btnRef.current.style.display = "inline"}}>
-          Btn inline
+          count btn show
         </button>
         <br/>
+        {/* using useRef to focus on input field using button (handleInputClick) */}
         <input type='text' ref={inputRef}/>
         <button onClick={handleInputClick}>
           Focus on Input
